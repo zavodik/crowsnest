@@ -45,7 +45,7 @@ ifeq ($(USTREAMER_EXIST), 0)
 else
 	$(info INFO: ustreamer found.)
 endif
-ifeq ($(SPAYGLASS_EXIST), 0)
+ifeq ($(SPYGLASS_EXIST), 0)
 	$(info INFO: spyglass not found, cloning repository.)
 	$(shell git clone $(SPYGLASS_REPO) spyglass)
 else
