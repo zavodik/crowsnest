@@ -35,7 +35,7 @@ OMX_SUPPORT = $(shell [ -d /opt/vc/include ] && echo 1 || echo 0)
 # Ustreamer cloned?
 USTREAMER_EXIST = $(shell [ -d ustreamer ] > /dev/null && echo 1 || echo 0)
 
-# Spayglass cloned?
+# Spyglass cloned?
 SPYGLASS_EXIST = $(shell [ -d spyglass ] > /dev/null && echo 1 || echo 0)
 
 all:
@@ -49,7 +49,7 @@ ifeq ($(SPAYGLASS_EXIST), 0)
 	$(info INFO: spyglass not found, cloning repository.)
 	$(shell git clone $(SPYGLASS_REPO) spyglass)
 else
-	$(info INFO: ustreamer found.)
+	$(info INFO: spyglass found.)
 endif
 	$(MAKE) ustreamer-bin
 	$(MAKE) rtsp
