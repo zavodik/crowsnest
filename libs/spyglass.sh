@@ -91,7 +91,7 @@ run_spyglass() {
     echo "Parameters: ${start_param[*]}" | \
     log_output "spyglass [cam ${cam_sec}]"
     # Start ustreamer
-    echo "${start_param[*]}" | xargs -I{} python3 "${spgl_bin}" {} 2>&1 | \
+    echo "${start_param[*]}" | xargs "${spgl_bin}" 2>&1 | \
     log_output "spyglass [cam ${cam_sec}]"
     # Should not be seen else failed.
     log_msg "ERROR: Start of spyglass [cam ${cam_sec}] failed!"
