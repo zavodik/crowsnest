@@ -28,13 +28,23 @@ get_libcamera_support() {
 check_spyglass_env() {
     local cam_sec
     cam_sec="${1}"
+    # check bullseye
     if [[ $(get_os_version) = "0" ]]; then
         log_msg "ERROR: Mode 'mjpg-spyglass' only works on 'bullseye' distributions!"
         log_msg "INFO: Skip starting spyglass ..."
         return
     fi
+
+    # check libcamera support
     if [[ $(get_libcamera_support) = "0" ]]; then
         log_msg "ERROR: No libcamera support or device not supported by libcamera!"
+        log_msg "INFO: Skip starting spyglass ..."
+        return
+    fi
+
+    # check python3
+    if [[ -z "$(command -v python3)" ]]; then
+        log_msg "ERROR: 'python3' not found! Needed by spyglass..."
         log_msg "INFO: Skip starting spyglass ..."
         return
     fi
@@ -81,7 +91,7 @@ run_spyglass() {
     echo "Parameters: ${start_param[*]}" | \
     log_output "spyglass [cam ${cam_sec}]"
     # Start ustreamer
-    echo "${start_param[*]}" | xargs "${spgl_bin}" 2>&1 | \
+    echo "${start_param[*]}" | xargs -I{} python3 "${spgl_bin}" {} 2>&1 | \
     log_output "spyglass [cam ${cam_sec}]"
     # Should not be seen else failed.
     log_msg "ERROR: Start of spyglass [cam ${cam_sec}] failed!"

@@ -204,7 +204,7 @@ remove_existing_webcamd() {
 
 install_packages() {
     ### Crowsnest Dependencies
-    PKGLIST="git crudini bsdutils findutils v4l-utils curl"
+    PKGLIST="git crudini bsdutils findutils v4l-utils curl python3"
     ### Ustreamer Dependencies
     PKGLIST="${PKGLIST} build-essential libevent-dev libjpeg-dev libbsd-dev"
     ### simple-rtsp-server Dependencies
