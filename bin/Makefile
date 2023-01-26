@@ -81,6 +81,7 @@ clean:
 	$(MAKE) -C $(USTREAMER_PATH) clean
 	$(info Clean rtsp-simple-server ...)
 	$(shell rm -rf $(RTSP_PATH)/rtsp*)
+	$(shell rm -rf $(SPYGLASS_PATH))
 
 update:
 	$(MAKE) clean
