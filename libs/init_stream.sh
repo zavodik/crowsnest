@@ -32,6 +32,9 @@ function construct_streamer {
             rtsp)
                 RTSP_INSTANCES+=( "${cams}" )
             ;;
+            mjpg-spyglass)
+                check_spyglass_env "${cams}"
+            ;;
             ?|*)
                 unknown_mode_msg
                 MJPG_INSTANCES+=( "${cams}" )

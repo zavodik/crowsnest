@@ -23,6 +23,8 @@ RTSP_ARCH = $(shell uname -m | cut -c '-5' | sed 's/x86_6/amd64/;s/aarch/arm64v8
 RTSP_VERSION = $(shell cat $(RTSP_PATH)/version)
 DL_RTSP = https://github.com/aler9/rtsp-simple-server/releases/download/$(RTSP_VERSION)/
 RTSP_ARCHIVE = rtsp-simple-server_$(RTSP_VERSION)_linux_$(RTSP_ARCH).tar.gz
+SPYGLASS_PATH = spyglass
+SPYGLASS_REPO = https://github.com/roamingthings/spyglass.git
 
 # Custom Flags
 MAKEFLAGS += -j$(shell nproc)
@@ -33,10 +35,19 @@ OMX_SUPPORT = $(shell [ -d /opt/vc/include ] && echo 1 || echo 0)
 # Ustreamer cloned?
 USTREAMER_EXIST = $(shell [ -d ustreamer ] > /dev/null && echo 1 || echo 0)
 
+# Spayglass cloned?
+SPYGLASS_EXIST = $(shell [ -d spyglass ] > /dev/null && echo 1 || echo 0)
+
 all:
 ifeq ($(USTREAMER_EXIST), 0)
 	$(info INFO: ustreamer not found, cloning repository.)
 	$(shell git clone $(USTREAMER_REPO) ustreamer)
+else
+	$(info INFO: ustreamer found.)
+endif
+ifeq ($(SPAYGLASS_EXIST), 0)
+	$(info INFO: spyglass not found, cloning repository.)
+	$(shell git clone $(SPYGLASS_REPO) spyglass)
 else
 	$(info INFO: ustreamer found.)
 endif
