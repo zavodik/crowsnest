@@ -51,7 +51,7 @@ check_spyglass_env() {
 
     if [[ $(get_os_version) != "0" ]] &&
         [[ $(get_libcamera_support) = "1" ]]; then
-        run_spyglass "${cam_sec}"
+        run_spyglass "${cam_sec}" &
     fi
 }
 
