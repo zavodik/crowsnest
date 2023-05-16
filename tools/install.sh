@@ -573,9 +573,9 @@ main() {
     ## Step 13: Ask for reboot
     ## Skip if UNATTENDED
     goodbye_msg
-    if [[ "${CROWSNEST_UNATTENDED}" = "0" ]]; then
-        ask_reboot
-    fi
+    #if [[ "${CROWSNEST_UNATTENDED}" = "0" ]]; then
+    #    ask_reboot
+    #fi
 }
 
 main
